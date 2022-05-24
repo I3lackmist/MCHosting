@@ -1,0 +1,15 @@
+<div *ngIf="gameServer">
+    <b>
+    {{gameServer?.gameServerName}}
+    </b> <br/>
+    Version: {{gameServer?.gameVersionName}} <br/>
+    Flavor: {{gameServer?.serverFlavorName}} <br/>
+    Ip: {{getServerIp()}} <br/> <br/>
+    <button mat-raised-button type="submit" [routerLink]="['/edit', gameServer.gameServerName]">Edit</button> <br/>
+    <br/>
+    <button (click)="deleteServer()"mat-raised-button type="submit">Delete</button> <br/>
+</div>
+
+<ng-template #servernotfound>
+    404
+</ng-template>

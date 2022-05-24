@@ -1,0 +1,21 @@
+.notification {
+    width: 200px;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    &--error {
+        border: 2px solid rgba(155, 0, 0, 1);
+        background-color: rgba(155, 0, 0, 0.75);
+        color: white;
+    }
+    &--success {
+        border: 2px solid rgba(0, 155, 0, 1);
+        background-color: rgba(0, 155, 0, 0.75);
+    }
+    &--info {
+        border: 2px solid rgba(195, 175, 0, 1);
+        background-color: rgba(195, 175, 0, 0.75);
+    }
+}

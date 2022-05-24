@@ -1,0 +1,11 @@
+clouds:
+  local:
+    auth:
+      auth_url: "http://192.168.110.250:5000"
+      username: "labuser7"
+      password: "en74aanxYhRf"
+      project_name: "labuser7_project"
+      user_domain_name: "Default"
+      project_id: a1ced5e3e4264bd5a70acba050af7484
+    interface: "public"
+    identity_api_version: 3

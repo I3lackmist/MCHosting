@@ -1,0 +1,13 @@
+[Unit]
+Description=Intermediate Openstack API service
+
+[Service]
+WorkingDirectory=/var/www/ioa
+ExecStart=/usr/bin/python3 /var/www/ioa/app.py
+Type=simple
+User=ioa
+StandardOutput=append:/var/www/ioa/log
+StandardError=append:/var/www/ioa/log
+
+[Install]
+WantedBy=multi-user.target

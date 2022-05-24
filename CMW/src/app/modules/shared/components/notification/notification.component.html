@@ -1,0 +1,7 @@
+<div *ngIf="showNotification" #notification class="notification" [ngClass]="{
+    'notification--error': notificationStyle == 'error',
+    'notification--success': notificationStyle == 'success',
+    'notification--info': notificationStyle == 'info'
+}">
+    {{notificationMessage}}
+</div>

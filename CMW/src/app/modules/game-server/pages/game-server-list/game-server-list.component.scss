@@ -1,0 +1,16 @@
+.list {
+    &__tile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        list-style: none;
+
+        li {
+            min-width: 100px;
+        }
+
+        a {
+            margin: 20px;
+        }
+    }
+}

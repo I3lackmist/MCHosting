@@ -1,0 +1,30 @@
+<div>
+    <form [formGroup]="editGameServerForm" >
+        <!-- (ngSubmit)="submitEditGameServerForm()" -->
+        <mat-form-field appearance="fill">
+            <mat-label for="nameChange">Server Name</mat-label>
+            <input id="nameChange" formControlName="nameChange" matInput placeholder="Name">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label for="flavorChange">Server flavor:</mat-label>
+            <mat-select name="flavorChange" formControlName="flavorChange">
+              <mat-option *ngFor="let serverFlavor of availableServerFlavors" [value]="serverFlavor.displayName">
+                {{serverFlavor.displayName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label for="versionChange">Game version:</mat-label>
+            <mat-select name="versionChange" formControlName="versionChange">
+              <mat-option *ngFor="let gameVersion of availableGameVersions" [value]="gameVersion.gameVersionName">
+                {{gameVersion.gameVersionName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <button mat-raised-button type="submit">Submit</button>
+
+    </form>
+</div>

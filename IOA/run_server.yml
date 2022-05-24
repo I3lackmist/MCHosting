@@ -1,0 +1,90 @@
+- name: Launch minecraft server
+  hosts: all
+  remote_user: debian
+  become: True
+
+  tasks:
+  - name: Update apt repository
+    apt:
+      update-cache: True
+
+  - name: Install screen
+    apt:
+      name: screen
+
+  - name: Install ufw
+    apt:
+      name: ufw
+
+  - name: Accept input on port 25565
+    shell:
+      cmd: ufw allow 25565
+
+  - name: Make server directory
+    file:
+      path: /home/debian/minecraft
+      state: directory
+
+  - name: Download JavaSDK
+    get_url:
+      url: "{{ java_download_url }}" 
+      dest: /home/debian/minecraft/java.deb
+  
+  - name: Install JavaSDK
+    apt:
+      deb: /home/debian/minecraft/java.deb
+  
+  - name: Set up profile script for Java PATH
+    file:
+      path: /etc/profile.d/jdk.sh
+      state: touch
+
+  - name: Set up PATH to java
+    blockinfile:
+      path: /etc/profile.d/jdk.sh
+      block: |
+        export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/lib/jvm/jdk-17//bin
+
+  - name: Export Java path once
+    shell:
+      cmd: 
+        export JAVA_HOME=/usr/lib/jvm/jdk-17/ && export PATH=\$PATH:\$JAVA_HOME/bin
+
+  - name: Download server.jar
+    get_url:
+      url: "{{ jar_download_url }}"
+      dest: /home/debian/minecraft/server.jar
+
+  - name: Touch eula.txt
+    file:
+      path: /home/debian/minecraft/eula.txt
+      state: touch
+  
+  - name: Accept eula
+    lineinfile:
+      path: /home/debian/minecraft/eula.txt
+      line: eula=true
+    
+  - name: Create service file
+    file:
+      path: /etc/systemd/system/mcserver.service
+      state: touch
+
+  - name: Copy service content
+    blockinfile:
+      path: /etc/systemd/system/mcserver.service
+      block: "{{ service_content }}"
+
+  - name: Open file permissions
+    shell:
+      cmd: chmod -R 777 /home/debian/minecraft 
+
+  - name: Enable service
+    service:
+      name: mcserver
+      enabled: yes
+
+  - name: Start service
+    service:
+      name: mcserver
+      state: started

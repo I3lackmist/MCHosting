@@ -1,0 +1,29 @@
+<div>
+    <form [formGroup]="createGameServerForm" (ngSubmit)="submitCreateGameServerForm()">
+        <mat-form-field appearance="fill">
+            <mat-label for="gameServerName">Server Name</mat-label>
+            <input id="gameServerName" formControlName="gameServerName" matInput placeholder="Name">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label for="serverFlavorName">Server flavor:</mat-label>
+            <mat-select name="serverFlavorName" formControlName="serverFlavorName">
+              <mat-option *ngFor="let serverFlavor of availableServerFlavors" [value]="serverFlavor.displayName">
+                {{serverFlavor.displayName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label for="gameVersionName">Game version:</mat-label>
+            <mat-select name="gameVersionName" formControlName="gameVersionName">
+              <mat-option *ngFor="let gameVersion of availableGameVersions" [value]="gameVersion.gameVersionName">
+                {{gameVersion.gameVersionName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <button mat-raised-button type="submit">Submit</button>
+
+    </form>
+</div>

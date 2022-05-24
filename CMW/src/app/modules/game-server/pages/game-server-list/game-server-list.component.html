@@ -1,0 +1,5 @@
+<ul>
+    <div class="list__tile" *ngFor="let gameServer of gameServers">
+        <li>{{gameServer.gameServerName}}</li> <a><button mat-raised-button type="submit" [routerLink]="['/details', gameServer.gameServerName]">Details</button></a><br/>
+    </div>
+</ul>

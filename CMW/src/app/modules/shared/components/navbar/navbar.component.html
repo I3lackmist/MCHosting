@@ -1,0 +1,19 @@
+<mat-toolbar class="navbar">
+    <div>Tieto Crafters</div>
+    <div>
+            <div *ngIf="userLoggedIn() else loginPrompt">
+                <span>Hello {{getLoggedInUserName()}} || </span>
+                <span [style.cursor]="'pointer'"  [routerLink]="['/']">Home</span>
+                <span [style.cursor]="'pointer'" [routerLink]="['/create']">New server</span>
+                <span [style.cursor]="'pointer'" [routerLink]="['/list']">List servers</span>
+
+            </div>
+            <ng-template #loginPrompt>
+                <span [style.cursor]="'pointer'"  [routerLink]="['/']">Home</span>
+                <span [style.cursor]="'pointer'" [routerLink]="['/login']">Login</span>
+                <span [style.cursor]="'pointer'" [routerLink]="['/register']">Register</span>
+            </ng-template>
+
+    </div>
+
+</mat-toolbar>
